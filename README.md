@@ -2,7 +2,7 @@
 
 Packet Helper is a helper mod designed to easily create client and server packets as well as attaching them to your mod's custom methods.
 
- An example of implementhing this library can be found at https://github.com/iiVeil/ShareEm
+ An example of implementing this library can be found at https://github.com/iiVeil/ShareEm
 
 ## Initializing
 
