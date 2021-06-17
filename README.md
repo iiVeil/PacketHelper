@@ -2,12 +2,15 @@
 
 Packet Helper is a helper mod designed to easily create client and server packets as well as attaching them to your mod's custom methods.
 
+ An example of implementhing this library can be found at https://github.com/iiVeil/ShareEm
+
 ## Initializing
 
 Packet Helper uses a class called `Session` to store data for your packets
 
     Session session = new Session("YOUR.MOD.GUID")
  Session uses your mod GUID to create a unique packet offset to ensure that you don't overwrite packets on the game or other mods.
+ 
  
 ## Creating a packet
 Creating packets with Packet Helper is insanely easy first we will be creating a client packet.
@@ -155,7 +158,7 @@ Remember, when sending a packet to the client, `fromClient` is not accessible. I
 `SendPacketToAllClientsExcept(int[] except, Packet packet)` where except is an array of client ids that you don't want receiving the packet.
   
 
-  ##  Reading from packets
+##  Reading from packets
   Packets are written in the same order as the properties are set in the `Data` class. Subsequently, this requires you to read from the packet in the same order.
 
     // Assuming this is the data object sent
