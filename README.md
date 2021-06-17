@@ -30,7 +30,7 @@ It is important to remember that you must only add your packet once. Be sure to 
     [HarmonyPostfix]
     static void CreateNewClientPackets()
     {
-        session.CreateNewClientPacket("A Unique Packet Name", MyPacketMethod);
+        session.CreateNewClientPacket("A Unique Packet Name", MyClientPacketMethod);
     }
 	
 The packet name will be used later to identify which packet to send. The unique packet name does not have to correspond to the method name in any way.
@@ -48,7 +48,7 @@ Next, we will create a server packet.
     [HarmonyPostfix]
     static void CreateNewServerPackets()
     {
-        session.CreateNewServerPacket("A Unique Packet Name", MyPacketMethod);
+        session.CreateNewServerPacket("A Unique Packet Name", MyServerPacketMethod);
     }
 It is important to note that server packet methods differ from client packet methods. They include a `fromClient` parameter that indicates the `client.id` that the packet came from.
 
