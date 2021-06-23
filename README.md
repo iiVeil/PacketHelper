@@ -8,7 +8,9 @@ Packet Helper is a helper mod designed to easily create client and server packet
 
 Packet Helper uses a class called `Session` to store data for your packets
 
+```csharp
     Session session = new Session("YOUR.MOD.GUID")
+```
  `Session` uses your mod GUID to create a unique packet offset to ensure that you don't overwrite packets on the game or other mods.
  
  
