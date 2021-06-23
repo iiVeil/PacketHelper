@@ -18,7 +18,7 @@ Creating packets with Packet Helper is insanely easy first we will be creating a
 It is important to remember that you must only add your packet once. Be sure to patch a method that gets called once. 
 
 
-
+```csharp
     public static Session session = new Session("YOUR.MOD.GUID");
     public void MyClientPacketMethod(Packet packet) 
     {
@@ -32,11 +32,12 @@ It is important to remember that you must only add your packet once. Be sure to 
     {
         session.CreateNewClientPacket("A Unique Packet Name", MyClientPacketMethod);
     }
-	
+```
 The packet name will be used later to identify which packet to send. The unique packet name does not have to correspond to the method name in any way.
 
 Next, we will create a server packet.
 
+```csharp
     public static Session session = new Session("YOUR.MOD.GUID");
     public void MyServerPacketMethod(int fromClient, Packet packet) 
     {
@@ -50,6 +51,7 @@ Next, we will create a server packet.
     {
         session.CreateNewServerPacket("A Unique Packet Name", MyServerPacketMethod);
     }
+```
 It is important to note that server packet methods differ from client packet methods. They include a `fromClient` parameter that indicates the `client.id` that the packet came from.
 
 When creating a packet it's vital to understand that the method you attach to a packet will be handling how that packet is interacted with when received.
@@ -57,6 +59,7 @@ When creating a packet it's vital to understand that the method you attach to a 
 ## Sending packets
 Sending a packet is slightly more complicated as it uses the class `Data` shown below
 
+```csharp
     public class Data
     {
         public int[] ints = null;
@@ -68,10 +71,12 @@ Sending a packet is slightly more complicated as it uses the class `Data` shown 
         public Vector3[] vector3s = null;
         public Quaternion[] quaternions = null;
     }
+```
 `Data` is an important class as it allows us to send any amount of data through the packet.
   
 Here we will be sending a packet to the server.
 
+```csharp
     public static Session session = new Session("YOUR.MOD.GUID");
     public void MyServerPacketMethod(int fromClient, Packet packet) 
     {
@@ -101,11 +106,13 @@ Here we will be sending a packet to the server.
         session.SendPacketToServer("MyServerPacket", data);
       }
     }  
+```
 
   Next is sending a packet to the client.
 
 Remember, when sending a packet to the client, `fromClient` is not accessible. If you need that value in the method that handles the packet, put it in the `Data` class.
 
+```csharp
     public static Session session = new Session("YOUR.MOD.GUID");
     public void MyClientPacketMethod(Packet packet) 
     {
@@ -153,6 +160,7 @@ Remember, when sending a packet to the client, `fromClient` is not accessible. I
         session.SendPacketToServer("MyServerPacket", data);
       }
     }
+```
   If you don't want every client to get the packet use `SendPacketToAllClientsExcept` instead.
 
 `SendPacketToAllClientsExcept(int[] except, Packet packet)` where except is an array of client ids that you don't want receiving the packet.
@@ -161,6 +169,7 @@ Remember, when sending a packet to the client, `fromClient` is not accessible. I
 ##  Reading from packets
   Packets are written in the same order as the properties are set in the `Data` class. Subsequently, this requires you to read from the packet in the same order.
 
+```csharp
     // Assuming this is the data object sent
     Data data = new Data();
     data.strings = new string[] { "Username" };
@@ -173,3 +182,4 @@ Remember, when sending a packet to the client, `fromClient` is not accessible. I
     
     // Before reading the strings
     Debug.log( packet.ReadString() ); // Username
+```
